@@ -16,7 +16,7 @@ class SessionController < ApplicationController
             session[:user_id] = user.id
             redirect_to books_path
         else
-            flash.now[:alart]="ログインできません"
+            flash.now[:alert]="ログインできません"
             render :new
         end
     end

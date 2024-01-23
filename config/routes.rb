@@ -19,9 +19,12 @@ Rails.application.routes.draw do
 
   # resources :books
 
-#user登録
+#user情報
   get "/signup" ,to:"users#new"
   post "/signup",to:"users#create"
+  get "/users/edit",to:"users#edit",as:"edit_user"
+  patch "/users", to:"users#update" ,as:"update_user"
+
 #user認証
   get "/signin" ,to:"session#new"
   post "/signin" ,to:"session#create"
