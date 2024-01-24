@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
     before_action :set_book,only: [:edit,:update,:show,:destroy]
+    before_action :redirect_to_signin
 
     def index
         #取得
@@ -51,14 +52,20 @@ class BooksController < ApplicationController
        end 
     end
 
+    private
+
     def set_book
         @book = Book.find(params[:id])
     end
 
-    private
-
     def book_params
         params.require(:book).permit(:year,:month,:inout,:category,:amount)
     end
+
+    def redirect_to_signin
+        #セッションIdが空白ならログインページへ
+      redirect_to signin_path if session[:user_id].blank?
+    end
+
 
 end

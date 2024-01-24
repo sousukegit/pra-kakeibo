@@ -11,6 +11,18 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="navbar-brand">家計簿アプリ</div>
+    <div>
+      <% if session[:user_id]==nil%>     
+      <%= link_to "会員登録",signup_path, class:"btn btn-outline-secondary" %>
+      <% else %>
+      <%= link_to "ログアウト",signout_path, class:"btn btn-outline-secondary" %>
+      <%= link_to "登録内容更新",edit_user_path, class:"btn btn-outline-secondary" %>
+      <% end%>
+    </div>
+  </nav>
+
     <% if flash[:notice]%>
     <div class="alert alert-success" role="alert">
     <%= flash[:notice]%>
@@ -19,8 +31,9 @@
 
     <% if flash[:alert]%>
     <div class="alert alert-danger" role="alert">
-    <%= flash[:alert]%>
-    </div>
+      <!-- 恐らくturbo_streamが影響してうまく表示できない。 -->
+      <%= flash[:alert]%>
+    </div>    
     <% end%>
     <%= yield %>
   </body>

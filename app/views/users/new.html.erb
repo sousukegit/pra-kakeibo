@@ -1,0 +1,27 @@
+<h1>ユーザー登録</h1>
+
+<%= form_with model:@user,url:signup_path,local:true do |f| %>
+<div class="container">
+<diV class="form_group">
+<label>ユーザー名</label>
+<%= f.text_field :name, class:"form-control"%> 
+</diV>
+<diV class="form_group">
+<label>メールアドレス</label>
+<%= f.text_field  :email, class:"form-control"%> 
+</diV>
+
+<diV class="form_group">
+<label>パスワード</label>
+<%= f.password_field  :password, class:"form-control"%> 
+</diV>
+
+<diV class="form_group">
+<label>再パスワード</label>
+<%= f.password_field  :password_confirmation, class:"form-control"%> 
+</diV>
+    
+<%= f.submit class:"btn btn-primary"%>
+<%= link_to "ログイン",signin_path, class:"btn btn-outline-secondary" %>
+<% end %>
+</div>

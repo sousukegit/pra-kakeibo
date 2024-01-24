@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  #メイン機能
   get "/books",to:"books#index"
   get "/books/new",to:"books#new",as:"new"
   post "/books",to:"books#create"
@@ -18,6 +19,15 @@ Rails.application.routes.draw do
 
   # resources :books
 
+#user情報
+  get "/signup" ,to:"users#new"
+  post "/signup",to:"users#create"
+  get "/users/edit",to:"users#edit",as:"edit_user"
+  patch "/users", to:"users#update" ,as:"update_user"
 
+#user認証
+  get "/signin" ,to:"session#new"
+  post "/signin" ,to:"session#create"
+  get "/signout" ,to:"session#destroy"
 
 end
