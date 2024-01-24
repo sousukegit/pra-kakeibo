@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
     def index
         #取得
-        @books = Book.all 
+        @books = Book.where(user_id:session[:user_id])
         #where区で記載
         @books = @books.where(year:params[:year]) if params[:year].present?
         @books = @books.where(month:params[:month]) if params[:month].present?
