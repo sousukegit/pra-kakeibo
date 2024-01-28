@@ -1,4 +1,7 @@
 class Book < ApplicationRecord
+
+    #外部キー
+    belongs_to :user
     #書き方：validates :カラム名　ルール
     ##presenseは入力必須にする
     validates:year,presence:true

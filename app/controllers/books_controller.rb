@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
     def index
         #取得
-        @books = Book.all 
+        @books = Book.where(user_id:session[:user_id])
         #where区で記載
         @books = @books.where(year:params[:year]) if params[:year].present?
         @books = @books.where(month:params[:month]) if params[:month].present?
@@ -35,7 +35,10 @@ class BooksController < ApplicationController
     end
 
     def create
-        @book = Book.new(book_params)
+        #パラメーターを抽出した後に、user_idをパラメーターに入れる
+        @params = book_params
+        @params[:user_id] = session[:user_id]
+        @book = Book.new(@params)
 
         if @book.save
             flash[:notice] = "家計簿に"+@book.year.to_s+"年"+ @book.month.to_s+"月"+ @book.category+"を一件登録しました"
@@ -55,7 +58,8 @@ class BooksController < ApplicationController
     private
 
     def set_book
-        @book = Book.find(params[:id])
+        #ログイン中のユーザーか確認した上でパラメーターを取得する
+        @book = Book.where(user_id:session[:user_id]).find(params[:id])
     end
 
     def book_params
